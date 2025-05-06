@@ -1,13 +1,29 @@
-Vp2NestedFrameLayout 是一个用于解决 ViewPager2 与嵌套滑动 View（如 RecyclerView、ScrollView、HorizontalScrollView 等）之间滑动冲突 的自定义 FrameLayout。只需将可能产生滑动冲突的视图用此布局包裹，即可避免 ViewPager2 的滑动被误触发，实现更加顺畅的嵌套滑动体验。
+# Vp2NestedFrameLayout
 
- <com.github.a1607869392.widget.Vp2NestedFrameLayout 
+`Vp2NestedFrameLayout` 是一个用于解决 **ViewPager2 与嵌套滑动 View（如 RecyclerView、ScrollView、HorizontalScrollView 等）之间滑动冲突** 的自定义 `FrameLayout`。
+
+## 功能特点
+
+- 简单易用：只需将可能产生滑动冲突的视图用此布局包裹。
+- 动态控制：根据手势自动禁用/启用 ViewPager2 滑动，防止滑动手势冲突。
+- 兼容性强：支持所有继承自 View 的滑动组件（RecyclerView、ScrollView、NestedScrollView、HorizontalScrollView 等）。
+
+## 使用方式
+
+直接在布局中包裹嵌套滑动的组件：
+
+```xml
+<com.github.a1607869392.widget.Vp2NestedFrameLayout 
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <!-- 嵌套滑动的 RecyclerView、ScrollView 等 -->
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-          </com.github.a1607869392.widget.Vp2NestedFrameLayout>
+
+</com.github.a1607869392.widget.Vp2NestedFrameLayout>
+
 
 原理说明
 在 dispatchTouchEvent() 方法中，我们监听了当前触摸事件的类型：
